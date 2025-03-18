@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
- 
+
 
     <head>
         <meta charset="utf-8">
@@ -21,6 +21,43 @@
         @endif
     </head>
     <body>
-        {{ $slot }}
+        <div class="navbar bg-base-100 shadow-sm">
+            <div class="flex-1">
+              <a class="btn btn-ghost text-xl">daisyUI</a>
+            </div>
+            <div class="flex-none">
+              <ul class="menu menu-horizontal px-1">
+                <li><a>Link</a></li>
+                <li>
+                  <details>
+                    <summary>Parent</summary>
+                    <ul class="bg-base-100 rounded-t-none p-2">
+                      <li><a>Link 1</a></li>
+                      <li><a>Link 2</a></li>
+                    </ul>
+                  </details>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+        <main class='flex h-screen '>
+
+          <ul class="menu bg-base-200 rounded-box w-56">
+            <li>
+              <h2 class="menu-title">Title</h2>
+              <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="{{route('product.page')}}">Product</a></li>
+{{--                <li><a>Item 3</a></li>--}}
+              </ul>
+            </li>
+          </ul>
+
+        <div class='container px-2 sm:px-4' >
+            {{ $slot }}
+        </div>
+    </main>
+
     </body>
 </html>
