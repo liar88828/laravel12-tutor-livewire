@@ -3,28 +3,30 @@
 namespace App\Livewire\Product;
 
 use App\Models\Products;
+use Illuminate\View\View;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
 
 class ProductUpdate extends Component
 {
     public int $id;
-//    public Products $product;
-
     #[Validate('required')]
     public string $name;
     #[Validate('required')]
     public int $qty;
     #[Validate('required')]
+    public int $price;
+    #[Validate('required')]
     public string $desc;
 
 
-    public function mount($id)
+    public function mount($id):void
     {
 
         $this->id = $id;
-        $productDB = Products::findOrFail($id);
+        $productDB = Products::query()->findOrFail($id);
         $this->name = $productDB->name;
+        $this->price = $productDB->price;
         $this->qty = $productDB->qty;
         $this->desc = $productDB->desc;
     }
@@ -32,13 +34,11 @@ class ProductUpdate extends Component
     public function onUpdate(): null
     {
         $this->validate();
-
         $productDB = Products::query()->findOrFail($this->id);
-
-
         $productDB->update([
             'name' => $this->name,
             'qty' => $this->qty,
+            'price' => $this->price,
             'desc' => $this->desc,
         ]);
 
@@ -47,7 +47,7 @@ class ProductUpdate extends Component
     }
 
 
-    public function render()
+    public function render():View
     {
         return view('livewire.product.product-update', [
 //            "product" => $this->product

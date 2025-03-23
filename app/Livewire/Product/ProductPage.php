@@ -8,13 +8,12 @@ use Livewire\Component;
 
 class ProductPage extends Component
 {
-    public $search = '';
+    public string $search = '';
 
-    public function onDelete($id)
+    public function onDelete($id):void
     {
         Products::destroy($id);
         session()->flash('message', 'Product deleted successfully!');
-
     }
 
 

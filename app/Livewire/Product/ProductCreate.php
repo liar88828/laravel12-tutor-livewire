@@ -14,20 +14,21 @@ class ProductCreate extends Component
     #[Validate('required')]
     public int $qty;
     #[Validate('required')]
+    public int $price;
+    #[Validate('required')]
     public string $desc;
 
     public function onCreate(): null
     {
         $this->validate();
-
         Products::query()->create(
-            $this->only(['name', 'qty', 'desc'])
+            $this->only(['name', 'qty', 'price', 'desc'])
         );
         session()->flash('message', 'Product create successfully!');
         return $this->redirect('/product');
     }
 
-    public function render():View
+    public function render(): View
     {
         return view('livewire.product.product-create');
     }

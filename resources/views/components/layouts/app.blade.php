@@ -57,12 +57,29 @@
                         Product
                     </a>
                 </li>
-                <li><a>Item 3</a></li>
+                <li>
+                    <a href="{{route('customer.page')}}"
+                       class="{{ request()->routeIs('customer.page') ? 'menu-active' : '' }}">
+                        Customer
+                    </a>
+                </li>
             </ul>
         </li>
     </ul>
     {{-------------}}
 
+    @if(Session::has('message'))
+        <div class="toast toast-top toast-end"
+{{--             role="alert"--}}
+{{--             x-data="{show: false}"--}}
+{{--             x-show="show"--}}
+{{--             @test.window="show = true; setTimeout(() => show = false, 5000)"--}}
+        >
+            <div class="alert alert-info">
+                <span>{{ Session::get('message') }}</span>
+            </div>
+        </div>
+    @endif
     <div class='container '>
         <div class="p-2 sm:p-4 bg-base-100 rounded-xl mb-32">
             {{ $slot }}
@@ -94,7 +111,18 @@
                               stroke-linecap="square" stroke-miterlimit="10" stroke-width="2"></rect>
                     </g>
                 </svg>
-                <span class="dock-label">Inbox</span>
+                <span class="dock-label">Product</span>
+            </a>
+            <a href="{{route('customer.page')}}" class="{{ request()->routeIs('customer.page') ? 'dock-active' : '' }}">
+                <svg class="size-[1.2em]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <g fill="currentColor" stroke-linejoin="miter" stroke-linecap="butt">
+                        <polyline points="3 14 9 14 9 17 15 17 15 14 21 14" fill="none" stroke="currentColor"
+                                  stroke-miterlimit="10" stroke-width="2"></polyline>
+                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2" fill="none" stroke="currentColor"
+                              stroke-linecap="square" stroke-miterlimit="10" stroke-width="2"></rect>
+                    </g>
+                </svg>
+                <span class="dock-label">Customer</span>
             </a>
 
             <button>

@@ -2,20 +2,15 @@
 
 namespace App\Models;
 
-use Database\Factories\ProductsFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Products extends Model
+class Customers extends Model
 {
-    /** @use HasFactory<ProductsFactory> */
     use HasFactory;
 
     protected $fillable = [
-        'name',
-        'qty',
-        'price',
-        'desc'
+        'name', 'address', 'phone'
     ];
-
+//    protected $table = 'customers';
 }
